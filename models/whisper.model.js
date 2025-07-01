@@ -5,6 +5,12 @@ const WhisperSchema = new mongoose.Schema({
   text: { type: String, required: true },
   photo: String,
   color: String,
+  // spotify: {
+  //   trackName: String,
+  //   artist: String,
+  //   previewUrl: String,
+  //   spotifyId: String
+  // },
   createdAt: { type: Date, default: Date.now }
 });
 
