@@ -15,6 +15,7 @@ export const postWhisper = async (req, res) => {
 
     res.status(201).json({ id: whisper._id });
   } catch (err) {
+    console.error('❌ Erro ao criar whisper:', err);
     res.status(400).json({ error: err.message });
   }
 };
@@ -34,6 +35,7 @@ export const getWhisper = async (req, res) => {
 
     res.json(result);
   } catch (err) {
+    console.error('❌ Erro ao buscar whisper:', err);
     res.status(400).json({ error: err.message });
   }
 };

@@ -29,6 +29,7 @@ export const getAllImages = async (req, res) => {
 
     res.json(decryptedImages);
   } catch (err) {
+    console.error('❌ Erro ao buscar imagens:', err);
     res.status(500).json({ error: err.message });
   }
 };
