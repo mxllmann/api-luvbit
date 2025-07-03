@@ -5,6 +5,7 @@ const WhisperSchema = new mongoose.Schema({
   text: { type: String, required: true },
   photo: String,
   color: String,
+  iv: { type: String, required: true }, // novo
   // spotify: {
   //   trackName: String,
   //   artist: String,

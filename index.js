@@ -4,20 +4,31 @@ import cors from 'cors';
 import connectDB from './config/db.js';
 import whisperRoutes from './routes/whisper.routes.js'
 import imageRoutes from './routes/image.routes.js'
+import bodyParser from 'body-parser';
 // import spotifyRoutes from './routes/spotify.routes.js';
 
 
 dotenv.config();
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json({ limit: '15mb' }));
+app.use(bodyParser.urlencoded({ limit: '15mb', extended: true }));
 
 app.use('/whisper', whisperRoutes);
 app.use('/image', imageRoutes);
 // app.use('/spotify', spotifyRoutes);
 
+app.use((err, req, res, next) => {
+  if (err.type === 'entity.too.large') {
+    return res.status(413).json({
+      error: 'Payload muito grande. Máximo permitido: 15 MB.',
+    });
+  }
+  next(err);
+});
+
 
 // Conexão
 connectDB().then(() => {
-  app.listen(3001, () => console.log('Server on http://localhost:3001'));
+  app.listen(5001, () => console.log('Server on http://localhost:5001'));
 });
