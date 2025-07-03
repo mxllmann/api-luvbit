@@ -7,7 +7,6 @@ import imageRoutes from './routes/image.routes.js'
 import bodyParser from 'body-parser';
 // import spotifyRoutes from './routes/spotify.routes.js';
 
-
 dotenv.config();
 const app = express();
 app.use(cors());
@@ -27,8 +26,9 @@ app.use((err, req, res, next) => {
   next(err);
 });
 
+const PORT = process.env.PORT;
 
 // Conexão
 connectDB().then(() => {
-  app.listen(5001, () => console.log('Server on http://localhost:5001'));
+  app.listen(PORT, () => console.log(`Server on http://localhost:${PORT}`));
 });
