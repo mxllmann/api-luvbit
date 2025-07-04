@@ -4,13 +4,21 @@ import { encrypt, decrypt } from '../utils/cryptoUtils.js';
 export const postImage = async (req, res) => {
   try {
     const { name, data } = req.body;
-    const { data: encryptedData, iv } = encrypt(data);
+    const { data: encryptedData, iv: dataIv } = encrypt(data);
+    const { data: encryptedName, iv: nameIv } = encrypt(name);
+    const createdAtRaw = new Date().toISOString();
+  const { data: encryptedCreatedAt, iv: createdAtIv } = encrypt(createdAtRaw);
+
 
     const image = await createImage({
-      name,
+      name: encryptedName,
       data: encryptedData,
-      iv
+      iv: dataIv,
+      ivName: nameIv,
+      createdAt: encryptedCreatedAt,
+      ivCreatedAt: createdAtIv
     });
+
 
     res.status(201).json({ id: image._id });
   } catch (err) {
@@ -24,8 +32,11 @@ export const getAllImages = async (req, res) => {
 
     const decryptedImages = encryptedImages.map(image => ({
       ...image.toObject(),
-      data: decrypt(image.data, image.iv)
+      data: decrypt(image.data, image.iv),
+      name: decrypt(image.name, image.ivName),
+      createdAt: decrypt(image.createdAt, image.ivCreatedAt)
     }));
+
 
     res.json(decryptedImages);
   } catch (err) {
@@ -33,5 +44,4 @@ export const getAllImages = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 
