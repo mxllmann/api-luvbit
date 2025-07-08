@@ -29,11 +29,13 @@
 ```bash
 git clone https://github.com/seu-usuario/api-luvbit.git
 cd api-luvbit
+```
 
 ### 2. Instalar Dependências
 
 ```bash
 npm install
+```
 
 ### 3. Crie um arquivo .env
 
@@ -45,11 +47,13 @@ IMAGE_UPLOAD_TOKEN=seu_token_de_upload
 SMTP_USER=seu_email@gmail.com
 SMTP_PASS=sua_senha_de_app
 FRONTEND_URL=http://localhost:3000
+```
 
 ### 4. Rode a Aplicação
 
 ```bash
 npm run dev
+```
 
 ## 📡 Rotas da API
 
