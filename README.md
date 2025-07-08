@@ -80,6 +80,7 @@ npm run dev
 
 ## 📁 Estrutura do Projeto
 
+```markdown
 .
 ├── config/
 │   └── db.js
@@ -104,6 +105,7 @@ npm run dev
 │   └── image.service.js
 ├── index.js
 └── .env
+```
 
 ## 👨‍💻 Autor
 
