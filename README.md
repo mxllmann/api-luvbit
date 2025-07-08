@@ -40,7 +40,7 @@ npm install
 ### 3. Crie um arquivo .env
 
 ```env
-PORT=5001
+PORT=3001
 MONGO_URI=mongodb://localhost:27017/luvbit
 SECURE_DATA_KEY=sua_chave_aes_256
 IMAGE_UPLOAD_TOKEN=seu_token_de_upload
